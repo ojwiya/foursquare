@@ -16,7 +16,7 @@ angular.module('main', [
       templateUrl: 'main/templates/tabs.html'
     })
       .state('main.list', {
-        url: '/list',
+        url: '/list',
         views: {
           'tab-list': {
             templateUrl: 'main/templates/list.html',

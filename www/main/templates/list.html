@@ -10,10 +10,10 @@
     <div class="item item-input-inset">
       <label class="item-input-wrapper">
         <input type="text" ng-model="ctrl.search" 
-        ng-change="ctrl.change()" placeholder="Search for a place"
+        ng-change="ctrl.getVenues()" placeholder="Search for a place"
         >
       </label>
-      <button class="button button-small">
+      <button ng-click="ctrl.getVenues()" id="btn_getVenues" class="button button-small">
         Submit
       </button>
     </div>

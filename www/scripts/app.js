@@ -33,12 +33,12 @@ angular.module('main', [
           }
         }
       })
-      .state('main.debug', {
-        url: '/debug',
+      .state('main.settings', {
+        url: '/settings',
         views: {
-          'tab-debug': {
-            templateUrl: 'main/templates/debug.html',
-            controller: 'DebugCtrl as ctrl'
+          'tab-settings': {
+            templateUrl: 'main/templates/settings.html'
+            //controller: 'SettingsCtrl as ctrl'
           }
         }
       });
@@ -79,15 +79,16 @@ angular.module('main')
 
   $log.log('Hello from your Controller: VenueCtrl in module main:. This is your controller:', this);
   var pendingTask;
+  var vm = this;
   //If the model is blank then populate
-  this.init = function () {
+ vm.init = function () {
     if (!this.search) {
-      this.search = 'kilburn';
-      this.fetch();
+     vm.search = 'kilburn';
+     vm.fetch();
     }
   };
   //Listen on change 
-  this.change = function () {
+ vm.getVenues = function () {
      if (pendingTask) {
      clearTimeout(pendingTask);
      }
@@ -95,68 +96,15 @@ angular.module('main')
      pendingTask = setTimeout(fetch, 800);
   };
 //Get response from server  
-  this.fetch = function () {
-      $http.get('https://api.foursquare.com/v2/venues/explore?near=' + this.search + '&oauth_token=RUKQBYL4EFOKY1FJ3CS0K5FX4JKP0LBP5UQH1YAJAM0YQJKE&v=20151115')
+ vm.fetch = function () {
+    $http.get('https://api.foursquare.com/v2/venues/explore?near=' + vm.search + '&oauth_token=RUKQBYL4EFOKY1FJ3CS0K5FX4JKP0LBP5UQH1YAJAM0YQJKE&v=20151115')
         .success(function (response) {
-          console.log(response.response.groups);
-          this.details = response.response;
+          //console.log(response.response.groups);
+         vm.details = response.response;
         });
   };
   
-   this.init();
-});
-
-'use strict';
-angular.module('main')
-.controller('DebugCtrl', function ($log, $http, $timeout, Main, Config, $cordovaDevice) {
-
-  $log.log('Hello from your Controller: DebugCtrl in module main:. This is your controller:', this);
-
-  // bind data from services
-  this.someData = Main.someData;
-  this.ENV = Config.ENV;
-  this.BUILD = Config.BUILD;
-  // get device info
-  ionic.Platform.ready(function () {
-    if (ionic.Platform.isWebView()) {
-      this.device = $cordovaDevice.getDevice();
-    }
-  }.bind(this));
-
-  // PASSWORD EXAMPLE
-  this.password = {
-    input: '', // by user
-    strength: ''
-  };
-  this.grade = function () {
-    var size = this.password.input.length;
-    if (size > 8) {
-      this.password.strength = 'strong';
-    } else if (size > 3) {
-      this.password.strength = 'medium';
-    } else {
-      this.password.strength = 'weak';
-    }
-  };
-  this.grade();
-
-  // Proxy
-  this.proxyState = 'ready';
-  this.proxyRequestUrl = Config.ENV.SOME_OTHER_URL + '/get';
-
-  this.proxyTest = function () {
-    this.proxyState = '...';
-
-    $http.get(this.proxyRequestUrl)
-    .then(function (response) {
-      $log.log(response);
-      this.proxyState = 'success (result printed to browser console)';
-    }.bind(this))
-    .then($timeout(function () {
-      this.proxyState = 'ready';
-    }.bind(this), 6000));
-  };
-
+  vm.init();
 });
 
 'use strict';
