@@ -14,6 +14,6 @@ describe('list venues page', function () {
     placeInput.sendKeys('kilburn');
     expect(venues).not.toBeUndefined();
     expect(venues.length).toBeGreaterThan(0);
-
   });
+  
 });
