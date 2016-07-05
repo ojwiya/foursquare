@@ -95,8 +95,8 @@ angular.module('main')
 
   vm.fetch = function () {
         return venueService.fetch(vm.search)
-            .then(function (data) {
-                vm.details = data.response;
+            .then(function (response) {
+                vm.details = response.data.response;
                 return vm.details;
             });
     };
@@ -112,9 +112,8 @@ angular.module('main')
   
    vm.activate = function () {
         //If the model is blank then populate
-        if (!this.search) {
+        if (!vm.search) {
          vm.search = 'kilburn';
-         vm.fetch();
         }
         return vm.fetch(vm.search).then(function () {
             $log.log('Activated venues View');
