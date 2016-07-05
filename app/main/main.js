@@ -16,7 +16,7 @@ angular.module('main', [
       templateUrl: 'main/templates/tabs.html'
     })
       .state('main.list', {
-        url: '/list',
+        url: '/list',
         views: {
           'tab-list': {
             templateUrl: 'main/templates/list.html',
@@ -33,12 +33,12 @@ angular.module('main', [
           }
         }
       })
-      .state('main.debug', {
-        url: '/debug',
+      .state('main.settings', {
+        url: '/settings',
         views: {
-          'tab-debug': {
-            templateUrl: 'main/templates/debug.html',
-            controller: 'DebugCtrl as ctrl'
+          'tab-settings': {
+            templateUrl: 'main/templates/settings.html'
+            //controller: 'SettingsCtrl as ctrl'
           }
         }
       });

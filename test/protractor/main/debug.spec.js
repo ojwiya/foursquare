@@ -3,28 +3,22 @@
 describe('Debug page', function () {
 
   beforeEach(function () {
-    browser.get('/#/main/debug');
+    browser.get('/#/main/list');
   });
 
-  it('should grade passwords', function () {
+  it('should search for venues', function () {
 
-    var passwordInput = element(by.model('ctrl.password.input'));
-    var passwordStrength = element(by.binding('ctrl.password.strength'));
+    var placeInput = element(by.model('ctrl.search'));
+    
+    var venues = element(by.model('ctrl.details'));
+    
+    var search_button = element(by.id('add_car'));
+  add_car_btn.click() 
 
-    // weak
-    passwordInput.sendKeys('my');
-    expect(passwordStrength.getText()).toEqual('weak');
-    expect(passwordStrength.getAttribute('class')).toContain('badge-assertive');
-
-    // medium
-    passwordInput.sendKeys('test');
-    expect(passwordStrength.getText()).toEqual('medium');
-    expect(passwordStrength.getAttribute('class')).toContain('badge-energized');
-
-    // strong
-    passwordInput.sendKeys('tesyasdft');
-    expect(passwordStrength.getText()).toEqual('strong');
-    expect(passwordStrength.getAttribute('class')).toContain('badge-balanced');
+    //data retrieved
+    placeInput.sendKeys('kilburn');
+    expect(venues).not.toBeUndefined();
+    expect(venues.length).toBeGreaterThan(0);
 
   });
 });
