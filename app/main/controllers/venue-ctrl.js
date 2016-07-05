@@ -22,15 +22,6 @@ angular.module('main')
             });
     };
     
-//Get response from server  
-// vm.fetch1 = function () {
-//     $http.get('https://api.foursquare.com/v2/venues/explore?near=' + vm.search + '&oauth_token=RUKQBYL4EFOKY1FJ3CS0K5FX4JKP0LBP5UQH1YAJAM0YQJKE&v=20151115')
-//         .success(function (response) {
-//           //console.log(response.response.groups);
-//         vm.details = response.response;
-//         });
-//   };
-  
    vm.activate = function () {
         //If the model is blank then populate
         if (!vm.search) {
@@ -41,5 +32,9 @@ angular.module('main')
         });
     };
   
-   vm.activate();
+    //Stop the ion-refresher from spinning
+  //vm.$broadcast('scroll.refreshComplete');
+      
+  vm.activate();
+   
 });
