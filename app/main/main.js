@@ -2,8 +2,7 @@
 angular.module('main', [
   'ionic',
   'ngCordova',
-  'ui.router',
-  // TODO: load other modules selected during generation
+  'ui.router'
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -21,7 +20,7 @@ angular.module('main', [
         views: {
           'tab-list': {
             templateUrl: 'main/templates/list.html',
-            // controller: 'SomeCtrl as ctrl'
+            controller: 'VenueCtrl as ctrl'
           }
         }
       })
@@ -30,7 +29,7 @@ angular.module('main', [
         views: {
           'tab-list': {
             templateUrl: 'main/templates/list-detail.html',
-            // controller: 'SomeCtrl as ctrl'
+            controller: 'VenueCtrl as ctrl'
           }
         }
       })
